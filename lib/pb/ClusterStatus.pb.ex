@@ -1,4 +1,4 @@
-defmodule Pb.RegionState.State do
+defmodule ExHBase.Pb.RegionState.State do
   @moduledoc false
   use Protobuf, enum: true, protoc_gen_elixir_version: "0.11.0", syntax: :proto2
 
@@ -19,24 +19,24 @@ defmodule Pb.RegionState.State do
   field :MERGING_NEW, 14
 end
 
-defmodule Pb.RegionState do
+defmodule ExHBase.Pb.RegionState do
   @moduledoc false
   use Protobuf, protoc_gen_elixir_version: "0.11.0", syntax: :proto2
 
-  field :region_info, 1, required: true, type: Pb.RegionInfo
-  field :state, 2, required: true, type: Pb.RegionState.State, enum: true
+  field :region_info, 1, required: true, type: ExHBase.Pb.RegionInfo
+  field :state, 2, required: true, type: ExHBase.Pb.RegionState.State, enum: true
   field :stamp, 3, optional: true, type: :uint64
 end
 
-defmodule Pb.RegionInTransition do
+defmodule ExHBase.Pb.RegionInTransition do
   @moduledoc false
   use Protobuf, protoc_gen_elixir_version: "0.11.0", syntax: :proto2
 
-  field :spec, 1, required: true, type: Pb.RegionSpecifier
-  field :region_state, 2, required: true, type: Pb.RegionState
+  field :spec, 1, required: true, type: ExHBase.Pb.RegionSpecifier
+  field :region_state, 2, required: true, type: ExHBase.Pb.RegionState
 end
 
-defmodule Pb.StoreSequenceId do
+defmodule ExHBase.Pb.StoreSequenceId do
   @moduledoc false
   use Protobuf, protoc_gen_elixir_version: "0.11.0", syntax: :proto2
 
@@ -44,19 +44,19 @@ defmodule Pb.StoreSequenceId do
   field :sequence_id, 2, required: true, type: :uint64
 end
 
-defmodule Pb.RegionStoreSequenceIds do
+defmodule ExHBase.Pb.RegionStoreSequenceIds do
   @moduledoc false
   use Protobuf, protoc_gen_elixir_version: "0.11.0", syntax: :proto2
 
   field :last_flushed_sequence_id, 1, required: true, type: :uint64
-  field :store_sequence_id, 2, repeated: true, type: Pb.StoreSequenceId
+  field :store_sequence_id, 2, repeated: true, type: ExHBase.Pb.StoreSequenceId
 end
 
-defmodule Pb.RegionLoad do
+defmodule ExHBase.Pb.RegionLoad do
   @moduledoc false
   use Protobuf, protoc_gen_elixir_version: "0.11.0", syntax: :proto2
 
-  field :region_specifier, 1, required: true, type: Pb.RegionSpecifier
+  field :region_specifier, 1, required: true, type: ExHBase.Pb.RegionSpecifier
   field :stores, 2, optional: true, type: :uint32
   field :storefiles, 3, optional: true, type: :uint32
   field :store_uncompressed_size_MB, 4, optional: true, type: :uint32
@@ -73,10 +73,10 @@ defmodule Pb.RegionLoad do
   field :complete_sequence_id, 15, optional: true, type: :uint64
   field :data_locality, 16, optional: true, type: :float
   field :last_major_compaction_ts, 17, optional: true, type: :uint64, default: 0
-  field :store_complete_sequence_id, 18, repeated: true, type: Pb.StoreSequenceId
+  field :store_complete_sequence_id, 18, repeated: true, type: ExHBase.Pb.StoreSequenceId
 end
 
-defmodule Pb.ReplicationLoadSink do
+defmodule ExHBase.Pb.ReplicationLoadSink do
   @moduledoc false
   use Protobuf, protoc_gen_elixir_version: "0.11.0", syntax: :proto2
 
@@ -84,7 +84,7 @@ defmodule Pb.ReplicationLoadSink do
   field :timeStampsOfLastAppliedOp, 2, required: true, type: :uint64
 end
 
-defmodule Pb.ReplicationLoadSource do
+defmodule ExHBase.Pb.ReplicationLoadSource do
   @moduledoc false
   use Protobuf, protoc_gen_elixir_version: "0.11.0", syntax: :proto2
 
@@ -95,7 +95,7 @@ defmodule Pb.ReplicationLoadSource do
   field :replicationLag, 5, required: true, type: :uint64
 end
 
-defmodule Pb.ServerLoad do
+defmodule ExHBase.Pb.ServerLoad do
   @moduledoc false
   use Protobuf, protoc_gen_elixir_version: "0.11.0", syntax: :proto2
 
@@ -103,34 +103,34 @@ defmodule Pb.ServerLoad do
   field :total_number_of_requests, 2, optional: true, type: :uint64
   field :used_heap_MB, 3, optional: true, type: :uint32
   field :max_heap_MB, 4, optional: true, type: :uint32
-  field :region_loads, 5, repeated: true, type: Pb.RegionLoad
-  field :coprocessors, 6, repeated: true, type: Pb.Coprocessor
+  field :region_loads, 5, repeated: true, type: ExHBase.Pb.RegionLoad
+  field :coprocessors, 6, repeated: true, type: ExHBase.Pb.Coprocessor
   field :report_start_time, 7, optional: true, type: :uint64
   field :report_end_time, 8, optional: true, type: :uint64
   field :info_server_port, 9, optional: true, type: :uint32
-  field :replLoadSource, 10, repeated: true, type: Pb.ReplicationLoadSource
-  field :replLoadSink, 11, optional: true, type: Pb.ReplicationLoadSink
+  field :replLoadSource, 10, repeated: true, type: ExHBase.Pb.ReplicationLoadSource
+  field :replLoadSink, 11, optional: true, type: ExHBase.Pb.ReplicationLoadSink
 end
 
-defmodule Pb.LiveServerInfo do
+defmodule ExHBase.Pb.LiveServerInfo do
   @moduledoc false
   use Protobuf, protoc_gen_elixir_version: "0.11.0", syntax: :proto2
 
-  field :server, 1, required: true, type: Pb.ServerName
-  field :server_load, 2, required: true, type: Pb.ServerLoad
+  field :server, 1, required: true, type: ExHBase.Pb.ServerName
+  field :server_load, 2, required: true, type: ExHBase.Pb.ServerLoad
 end
 
-defmodule Pb.ClusterStatus do
+defmodule ExHBase.Pb.ClusterStatus do
   @moduledoc false
   use Protobuf, protoc_gen_elixir_version: "0.11.0", syntax: :proto2
 
-  field :hbase_version, 1, optional: true, type: Pb.HBaseVersionFileContent
-  field :live_servers, 2, repeated: true, type: Pb.LiveServerInfo
-  field :dead_servers, 3, repeated: true, type: Pb.ServerName
-  field :regions_in_transition, 4, repeated: true, type: Pb.RegionInTransition
-  field :cluster_id, 5, optional: true, type: Pb.ClusterId
-  field :master_coprocessors, 6, repeated: true, type: Pb.Coprocessor
-  field :master, 7, optional: true, type: Pb.ServerName
-  field :backup_masters, 8, repeated: true, type: Pb.ServerName
+  field :hbase_version, 1, optional: true, type: ExHBase.Pb.HBaseVersionFileContent
+  field :live_servers, 2, repeated: true, type: ExHBase.Pb.LiveServerInfo
+  field :dead_servers, 3, repeated: true, type: ExHBase.Pb.ServerName
+  field :regions_in_transition, 4, repeated: true, type: ExHBase.Pb.RegionInTransition
+  field :cluster_id, 5, optional: true, type: ExHBase.Pb.ClusterId
+  field :master_coprocessors, 6, repeated: true, type: ExHBase.Pb.Coprocessor
+  field :master, 7, optional: true, type: ExHBase.Pb.ServerName
+  field :backup_masters, 8, repeated: true, type: ExHBase.Pb.ServerName
   field :balancer_on, 9, optional: true, type: :bool
 end

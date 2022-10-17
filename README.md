@@ -1,6 +1,6 @@
 # ExHBase
 
-**TODO: Add description**
+WIP native HBase client. Had fun while learning elixir and playing with the REPL.
 
 ## Installation
 
@@ -18,4 +18,3 @@ end
 Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
 be found at <https://hexdocs.pm/exhbase>.
-
